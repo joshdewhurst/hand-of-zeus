@@ -9,7 +9,7 @@ the technologies you plan on using
 ---
 ### a description of the app
 
-I am going to create a database management system that in similar to an employee management system, but going to put a fun spin on it and have it be a Greek god management system called The Hand of Zues, where Zues, the admin, is able to perform different oporations to change the systems' data. C++ libraries will be used to track operations that create a new entry, delete an entry, or edit an entry within the database.
+Hand of Zues will be a C++ database management system. Zues, the admin, is able to perform different oporations to change the systems' data. C++ libraries will be used to track operations that create a new entry, delete an entry, or edit an entry within the database.
 
 ---
 ## wireframes of the app

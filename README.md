@@ -31,7 +31,10 @@ I am not sure how the app will look as I am not sure how to integrate C++ to a w
 
 ---
 # Additional Information
-[W# schools intro to C++](https://www.w3schools.com/cpp/cpp_intro.asp)
+* [W3 Schools Intro to C++](https://www.w3schools.com/cpp/cpp_intro.asp)
+* [GeeksforGeeks C++ Introduction](https://www.geeksforgeeks.org/c-plus-plus/)
+* [Youtube Intro to C++](https://www.youtube.com/watch?v=OTroAxvRNbw&t=1s)
+* [GeeksforGeeks Project Ideas](https://www.geeksforgeeks.org/top-7-cpp-project-ideas-for-beginners/)
 
 ---
 # MVP Goals

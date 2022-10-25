@@ -2,10 +2,14 @@
 
 // creating a namespace to track libraries
 using std::cout;
+using std::cin;
+using std::string;
 
 int main() {
     // creating a data type string
-  std::string name = "Gods Name";
+  string name;
 //   console out the name variable
-  cout << name;
+    cout << "what is the name of the god?";
+    cin >> name;
+  cout << "the name of the god is " << name;
 }

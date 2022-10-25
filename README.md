@@ -1,6 +1,6 @@
 # hand-of-zues
 
-!(https://i.pinimg.com/originals/a0/9b/f2/a09bf213e173fd54848d3e17ecd127a2.jpg)
+![picture of Zues](https://i.pinimg.com/originals/a0/9b/f2/a09bf213e173fd54848d3e17ecd127a2.jpg)
 ---
 the technologies you plan on using
 * C++

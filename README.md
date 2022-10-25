@@ -36,11 +36,11 @@ I am not sure how the app will look as I am not sure how to integrate C++ to a w
 ---
 # MVP Goals
 
-[] create a system that logs a user in and allows them to manage a system
-[] create edit/delete/create for a datapoint "god" that the admin can edit
-[] create an auth for the admin
+* [] create a system that logs a user in and allows them to manage a system
+* [] create edit/delete/create for a datapoint "god" that the admin can edit
+* [] create an auth for the admin
 
 # Stretch Goals
 
-[] set up HTML to show my database using WebAssembly
-[] allow specific users to log in and edit their information but not other users and have different options than an admin
+* [] set up HTML to show my database using WebAssembly
+* [] allow specific users to log in and edit their information but not other users and have different options than an admin

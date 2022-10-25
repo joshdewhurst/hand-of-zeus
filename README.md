@@ -1,4 +1,6 @@
 # hand-of-zues
+
+!(https://i0.wp.com/thehistorianshut.com/wp-content/uploads/2020/01/social-media-crop-Athena-Minerva-Zeus-Jupiter-and-other-gods-painted-by-Rene%CC%81-Antoine-Houasse-1645%E2%80%931710-Public-Domain-via-Creative-Commons.jpg?fit=1500%2C785&ssl=1)
 ---
 the technologies you plan on using
 * C++

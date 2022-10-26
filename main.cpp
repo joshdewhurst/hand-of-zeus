@@ -13,10 +13,38 @@ class loginZeus{
             authenticate = false;
         };
 
+// main menu function that will only render if logged in
     void menu()
         {
             system("cls"); //clearing the screen
-            cout << "welcome back:" << username << std:: endl;
+            cout << "\n\n\n\t\t\t Welcome back:" << username ;
+            cout << "\n\n\n\t\t What would you like to do?";
+            cout << "\n\n\n\t\t 1. Create a god";
+            cout << "\n\n\n\t\t 2. Edit a god";
+            cout << "\n\n\n\t\t 3. Delete a god";
+            cout << "\n\n\n\t\t 4. See all gods";
+
+            int selection;
+            cin >> selection;
+            // switch expressions have cases to choice from 
+            switch (selection)
+            {
+                case 1:
+                    cout << "create a god";
+                    break;
+                case 2:
+                    cout << "edit a god";
+                    break;
+                case 3:
+                    cout << "delete a god";
+                    break;
+                case 4: 
+                    cout << "see all gods";
+                    break;
+                default:
+                    cout << "ivalid choice, for the gods sake try again";
+                    menu();
+            }
         }
     void login(){
         // cout is a response in console

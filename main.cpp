@@ -60,8 +60,8 @@ class loginZeus{
 
     // only Zeus can access the following
      private:
-        string password = "password1234";
-        string username = "zeus@mtolympus.com";
+        string password;
+        string username;
         string usernameMatch;
         string passwordMatch;
         bool authenticate;

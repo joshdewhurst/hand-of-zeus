@@ -72,6 +72,34 @@ class loginZeus{
         }
     }
 
+    void deleteGod()
+    {
+        system("clear");
+
+        fstream fin, fout;
+
+        // opening the file with the data
+        fin.open("gods.csv", ios::in);
+
+        // creating a new file to place non-deleted data
+        fout.open("godsNotDeleted.csv", ios::out);
+
+        string godName, line, word;
+        char sub;
+        int index;
+
+        // use the name to find the god
+        cout << "What god will be sent to Tartarus?";
+        cin >> godName;
+
+        // while loop that will continue to run until the end of the file is reached
+        while (!fin.eof())
+        {
+            
+        }
+
+    }
+
     void login(){
         // cout is a response in console
         cout << "please enter your almighty name \nUsername:";

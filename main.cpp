@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <stdlib.h>
+
 // including file stream to get info to and from the disk and the program
 
 using namespace std;
@@ -30,7 +32,8 @@ class loginZeus{
             switch (selection)
             {
                 case 1:
-                    cout << "create a god";
+                    cout << "\n\n\n\t\t\t create a god" << endl;
+                    addGod();
                     break;
                 case 2:
                     cout << "edit a god";
@@ -46,6 +49,23 @@ class loginZeus{
                     menu();
             }
         }
+
+    void addGod()
+    {
+        // clearing the system
+        system("clear");
+        fstream file("gods.csv", ios::out | ios::in);
+        if (file)
+        {
+            cout << "\n\n\n\t\t\t Welcome, please input new god information. \n" << endl;
+
+        }
+        else{
+            cout << "unable to acces creation file, try again";
+            addGod();
+        }
+    }
+
     void login(){
         // cout is a response in console
         cout << "please enter your almighty name /nUsername:";

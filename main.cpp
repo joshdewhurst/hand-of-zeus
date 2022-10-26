@@ -58,6 +58,12 @@ class loginZeus{
         if (file)
         {
             cout << "\n\n\n\t\t\t Welcome, please input new god information. \n" << endl;
+            string godName;
+
+            cout << "please enter the god's name: \n" << endl;
+            cin >> godName;
+            // inserting the godName into a file, but putting a new line for each new god that is created
+            file << "\n" << godName << ',';
 
         }
         else{
@@ -68,7 +74,7 @@ class loginZeus{
 
     void login(){
         // cout is a response in console
-        cout << "please enter your almighty name /nUsername:";
+        cout << "please enter your almighty name \nUsername:";
         // cin is input from user
         cin >> usernameMatch;
 

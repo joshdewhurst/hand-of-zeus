@@ -27,6 +27,11 @@ unsigned long cc;
 unsigned long long dd;
 
 char x = 'A';
-cout << x << std::endl;
+// cout << x << std::endl;
+// all characters have numbers associated with them through the askby table
 
+cout << "Hello\tThere" << std:: endl; //back slash t allows a tab
+cout << "hello\nthere" << std:: endl; //backslash n does a new line
+cout << "hello\0"; // null character that ends a C style string
+cout << "hello \"there\" ' ";
 }

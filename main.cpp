@@ -12,6 +12,12 @@ class loginZeus{
         loginZeus(){
             authenticate = false;
         };
+
+    void menu()
+        {
+            system("cls"); //clearing the screen
+            cout << "welcome back:" << username << std:: endl;
+        }
     void login(){
         // cout is a response in console
         cout << "please enter your almighty name /nUsername:";
@@ -29,7 +35,7 @@ class loginZeus{
 
             if(passwordMatch == password) {
                 cout << "correct password";
-                cin.get();
+                menu();
             }
             else {
                 cout << "wrong password";

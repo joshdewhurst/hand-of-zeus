@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <stdio.h>
 #include <sstream>
 
 using namespace std;
@@ -59,13 +60,18 @@ class loginZeus{
         if (file)
         {
             cout << "\n\n\n\t\t\t Welcome, please input new god information. \n" << endl;
-            string godName;
 
-            cout << "please enter the god's name: \n" << endl;
+            cout << "\t\t please enter the god Id [max 6 digets]: \n" << endl;
+            cin >> godId;
+            cout << "\t\t please enter the god's name: \n" << endl;
             cin >> godName;
+            cout << "\t\t What is their roman name? \n";
+            cin >> romanName;
+
             // inserting the godName into a file, but putting a new line for each new god that is created
             file.open("gods.csv", ios::out | ios::app);
-            file << godName << ',' << "\n";
+            file << godId << ", " << godName << ", " << romanName << "\n";
+            printf("%s\n", godId);
             file.close();
         }
         else{
@@ -77,68 +83,45 @@ class loginZeus{
 
     void deleteGod()
     {
-        fstream fin, fout;
-
-        // opening the file with the data
-        fin.open("gods.csv", ios::in);
-
-        // creating a new file to place non-deleted data
-        fout.open("godsNotDeleted.csv", ios::out);
-
-        string line, word;
-        char sub;
-        int index, godName, god1, i, count = 0;
-        vector<string>  row;
-
-
-        // use the name to find the god
-        cout << "What god will be sent to Tartarus?";
-        cin >> godName;
-        cout << godName;
-
-        // while loop that will continue to run until the end of the file is reached
-        while (!fin.eof())
+        system("clear");
+        char matchId[3];
+        fstream file, newFile;
+        int found = 0;
+        cout << "\t\t\t Delete a God \t\t\t\n";
+        // opening the gods file, ios::in reads, ios:out opora
+        file.open("gods.csv", ios::in);
+        if(!file)
         {
-            row.clear();
-            getline(fin, line);
-            // breaking the words in a string
-            stringstream s(line);
-
-            while (getline(s, word, ','))
-            {
-                row.push_back(word);
-            }
-
-            int row_size = row.size();
-            god1 = stoi(row[0]);
-
-            if (god1 != godName)
-            {
-                if (!fin.eof())
-                {
-                    for (i = 0; i < row_size - 1; i++) {
-                        fout << row[i] << ", ";
-                    }
-                    fout << row[row_size - 1] << "\n";
-                }
-            }
-            else
-            {
-                count = 1;
-            }
-            if (fin.eof())
-                break;
+            cout << "\n\t\t\t The gods are at it again...the file is lost";
+            file.close();
         }
-        if (count == 1)
-        cout << "god was deleted \n";
         else
-        cout << "record was not found \n";
-
-        fin.close();
-        fout.close();
-
-        remove("gods.csv");
-        rename("godsNotDeleted.csv", "gods.csv");
+        {
+            cout << "Please enter the god ID of the god you are sending to Tartarus:";
+            cin >> matchId;
+            newFile.open("newGods.csv", ios::app | ios::out);
+            file >> godId >> godName >> romanName;
+            while (!file.eof())
+            {
+                printf("while loop not end of file");
+                if(strcmp(matchId, godId) != 0)
+                {
+                    newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                    printf("new file");
+                }
+                else
+                {
+                    found ++;
+                    printf("deleted else statement");
+                    cout << "\t\t God was banished";
+                }
+                file >> godId >> godName >> romanName;
+            }
+            newFile.close();
+            file.close();
+            remove("gods.csv");
+            rename("newGods.csv", "gods.csv");
+        }
     }
 
     void login(){
@@ -194,6 +177,9 @@ class loginZeus{
         string usernameMatch;
         string passwordMatch;
         bool authenticate;
+        char godId[6];
+        char godName[20];
+        char romanName[20];
         
 };
 

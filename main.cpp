@@ -18,7 +18,7 @@ class loginZeus{
 // main menu function that will only render if logged in
     void menu()
         {
-            system("cls"); //clearing the screen
+            system("clear"); //clearing the screen
             cout << "\n\n\n\t\t\t Welcome back:" << username ;
             cout << "\n\n\n\t\t What would you like to do?";
             cout << "\n\n\n\t\t 1. Create a god";
@@ -53,7 +53,7 @@ class loginZeus{
 
     void addGod()
     {
-        // clearing the system
+    // clearing the system
         system("clear");
         fstream file("gods.csv", ios::out | ios::in);
         if (file)
@@ -64,19 +64,18 @@ class loginZeus{
             cout << "please enter the god's name: \n" << endl;
             cin >> godName;
             // inserting the godName into a file, but putting a new line for each new god that is created
-            file << "\n" << godName << ',';
-
+            file << godName << ',' << "\n";
+            file.close();
         }
         else{
             cout << "unable to acces creation file, try again";
             addGod();
         }
+        menu();
     }
 
     void deleteGod()
     {
-        system("clear");
-
         fstream fin, fout;
 
         // opening the file with the data
@@ -95,8 +94,6 @@ class loginZeus{
         cout << "What god will be sent to Tartarus?";
         cin >> godName;
         cout << godName;
-
-        index = 0;
 
         // while loop that will continue to run until the end of the file is reached
         while (!fin.eof())

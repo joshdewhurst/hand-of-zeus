@@ -1,9 +1,9 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <stdlib.h>
-
 // including file stream to get info to and from the disk and the program
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
 
 using namespace std;
 // using the standard library for naming
@@ -40,6 +40,7 @@ class loginZeus{
                     break;
                 case 3:
                     cout << "delete a god";
+                    deleteGod();
                     break;
                 case 4: 
                     cout << "see all gods";
@@ -84,20 +85,62 @@ class loginZeus{
         // creating a new file to place non-deleted data
         fout.open("godsNotDeleted.csv", ios::out);
 
-        string godName, line, word;
+        string line, word;
         char sub;
-        int index;
+        int index, godName, god1, i, count = 0;
+        vector<string>  row;
+
 
         // use the name to find the god
         cout << "What god will be sent to Tartarus?";
         cin >> godName;
+        cout << godName;
+
+        index = 0;
 
         // while loop that will continue to run until the end of the file is reached
         while (!fin.eof())
         {
-            
-        }
+            row.clear();
+            getline(fin, line);
+            // breaking the words in a string
+            stringstream s(line);
 
+            while (getline(s, word, ','))
+            {
+                row.push_back(word);
+            }
+
+            int row_size = row.size();
+            god1 = stoi(row[0]);
+
+            if (god1 != godName)
+            {
+                if (!fin.eof())
+                {
+                    for (i = 0; i < row_size - 1; i++) {
+                        fout << row[i] << ", ";
+                    }
+                    fout << row[row_size - 1] << "\n";
+                }
+            }
+            else
+            {
+                count = 1;
+            }
+            if (fin.eof())
+                break;
+        }
+        if (count == 1)
+        cout << "god was deleted \n";
+        else
+        cout << "record was not found \n";
+
+        fin.close();
+        fout.close();
+
+        remove("gods.csv");
+        rename("godsNotDeleted.csv", "gods.csv");
     }
 
     void login(){

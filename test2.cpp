@@ -82,34 +82,50 @@ class loginZeus{
 
     void deleteGod()
     {
-       system("clear");
-       fstream fin, fout;
-
-        fin.open("gods.csv", ios::in);
-        fout.open("newGods.csv", ios::out);
-
-        int matchId, god1, i, count = 0;
-        char sub;
-        int index;
-        string line, word;
-        vector<string> row;
-
-        cout << "enter the id of the god you want to delete";
-        cin >> matchId;
-
-        while (!fin.eof())
-        {
-            getline(fin, line);
-            stringstream s(line);
-
-            while (getline(s, word, ','))
-        {
-            row.push_back(word);
-        }
-        int row_size = row.size();
-        cout << row[0];
-        }
+        system("clear");
+        char matchId[5];
+        string line;
+        fstream file, newFile;
+        int found = 0;
+        cout << "\t\t\t Delete a God \t\t\t\n";
+        // opening the gods file, ios::in reads, ios:out operation
+        file.open("gods.csv", ios::in);
+        if (!file)
+    {
+        cout << "\n\t\t\t The gods are at it again...the file is lost";
+        file.close();
     }
+    else
+    {
+        cout << "\n What god do you want to delete: ";
+        cin >> matchId;
+        newFile.open("newGods.txt", ios::app | ios::out);
+        file >> godId >> godName >> romanName;
+        while (!file.eof())
+        {
+            if (strcmp(matchId, godId) != 0)
+            {
+                newFile << " " << godId << ", " << godName << ", " << romanName << "\n";
+            }
+            else
+            {
+                found++;
+                cout << "\n\t\t\tDeleted Dara";
+            }
+            file >> godId >> godName >> romanName;
+        }
+        if (found == 0)
+        {
+            cout << "\n\n\tEmployee ID Not Found.. Please Try Again";
+        }
+        newFile.close();
+        file.close();
+        remove("gods.csv");
+        rename("newGods.csv", "gods.csv");
+        menu();
+    }
+}
+
 
     void login(){
         // cout is a response in console
@@ -164,7 +180,7 @@ class loginZeus{
         string usernameMatch;
         string passwordMatch;
         bool authenticate;
-        int godId;
+        char godId[5];
         char godName[20];
         char romanName[20];
         

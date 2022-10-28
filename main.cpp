@@ -103,9 +103,9 @@ class loginZeus{
             file >> godId >> godName >> romanName;
             while (!file.eof())
             {
-                if(matchId[0] != godId[0])
+                if(strcmp(matchId, godId) != 0)
                 {
-                    newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                    newFile << " " << godId << ", " << godName << ", " << romanName << "\n";
                 }
                 else
                 {

@@ -82,46 +82,87 @@ class loginZeus{
 
     void deleteGod()
     {
-        system("clear");
-        char matchId[5];
-        string line;
-        fstream file, newFile;
-        int found = 0;
-        cout << "\t\t\t Delete a God \t\t\t\n";
-        // opening the gods file, ios::in reads, ios:out operation
-        file.open("gods.csv", ios::in);
-        if(!file)
+       system("clear");
+
+    // Open FIle pointers
+    fstream fin, fout;
+
+    // Open the existing file
+    fin.open("gods.csv", ios::in);
+
+    // Create a new file to store the non-deleted data
+    fout.open("newGods.csv", ios::out);
+
+    int matchId, god1, marks, count = 0, i;
+    char sub;
+    int index, new_marks;
+    string line, word;
+    vector<string> row;
+
+    // Get the roll number
+    // to decide the data to be deleted
+    cout << "Enter the godId "
+         << "of the record to be deleted: ";
+    cin >> matchId;
+
+    // Check if this record exists
+    // If exists, leave it and
+    // add all other data to the new file
+    while (!fin.eof())
+    {
+
+        row.clear();
+
+        getline(fin, line);
+        stringstream s(line);
+
+        while (getline(s, word, ','))
         {
-            cout << "\n\t\t\t The gods are at it again...the file is lost";
-            file.close();
+            row.push_back(word);
+        }
+
+        int row_size = row.size();
+        god1 = stoi(row[0]);
+
+        // writing all records,
+        // except the record to be deleted,
+        // into the new file 'reportcardnew.csv'
+        // using fout pointer
+        if (god1 != matchId)
+        {
+            if (!fin.eof())
+            {
+                for (i = 0; i < row_size - 1; i++)
+                {
+                    fout << row[i] << ",";
+                }
+                fout << row[row_size - 1] << "\n";
+            }
         }
         else
         {
-            cout << "Please enter the god ID of the god you are sending to Tartarus:";
-            cin >> matchId;
-            newFile.open("newGods.csv", ios::app | ios::out);
-            file >> godId >> godName >> romanName;
-            while (!file.eof())
-            {
-                if(matchId[0] != godId[0])
-                {
-                    newFile << " " << godId << " " << godName << " " << romanName << "\n";
-                }
-                else
-                {
-                    found ++;
-                    printf("deleted else statement");
-                    cout << "\t\t God was banished";
-                }
-                file >> godId >> godName >> romanName;
-            }
-            newFile.close();
-            file.close();
-            remove("gods.csv");
-            rename("newGods.csv", "gods.csv");
-            menu();
+            count = 1;
         }
+        if (fin.eof())
+            break;
     }
+    if (count == 1)
+        cout << "Record deleted\n";
+    else
+        cout << "Record not found\n";
+
+    // Close the pointers
+    fin.close();
+    fout.close();
+
+    // removing the existing file
+    remove("gods.csv");
+
+    // renaming the new file with the existing file name
+    rename("newGods.csv", "gods.csv");
+
+    menu();
+}
 
     void login(){
         // cout is a response in console
@@ -176,7 +217,7 @@ class loginZeus{
         string usernameMatch;
         string passwordMatch;
         bool authenticate;
-        char godId[5];
+        int godId;
         char godName[20];
         char romanName[20];
         

@@ -69,8 +69,8 @@ class loginZeus{
             cin >> romanName;
 
             // inserting the godName into a file, but putting a new line for each new god that is created
-            file.open("gods.csv", ios::out | ios::app);
-            file << godId << ", " << godName << ", " << romanName << "\n";
+            file.open("gods.txt", ios::out | ios::app);
+            file << godId << " " << godName << " " << romanName << "\n";
             file.close();
         }
         else{
@@ -83,13 +83,12 @@ class loginZeus{
     void deleteGod()
     {
         system("clear");
-        char matchId[5];
-        string line;
+        int matchId;
         fstream file, newFile;
         int found = 0;
         cout << "\t\t\t Delete a God \t\t\t\n";
         // opening the gods file, ios::in reads, ios:out operation
-        file.open("gods.csv", ios::in);
+        file.open("gods.txt", ios::in);
         if(!file)
         {
             cout << "\n\t\t\t The gods are at it again...the file is lost";
@@ -99,26 +98,24 @@ class loginZeus{
         {
             cout << "Please enter the god ID of the god you are sending to Tartarus:";
             cin >> matchId;
-            newFile.open("newGods.csv", ios::app | ios::out);
+            newFile.open("newGods.txt", ios::app | ios::out);
             file >> godId >> godName >> romanName;
             while (!file.eof())
             {
-                if(strcmp(matchId, godId) != 0)
+                if (godId == matchId)
                 {
-                    newFile << " " << godId << ", " << godName << ", " << romanName << "\n";
-                }
-                else
+                    cout << "\n\t\t God was banished";
+                    found++;
+                } else 
                 {
-                    found ++;
-                    printf("deleted else statement");
-                    cout << "\t\t God was banished";
+                    newFile << " " << godId << " " << godName << " " << romanName << '\n';
                 }
-                file >> godId >> godName >> romanName;
+                file >> godId >> godName >>romanName;
             }
             newFile.close();
             file.close();
-            remove("gods.csv");
-            rename("newGods.csv", "gods.csv");
+            remove("gods.txt");
+            rename("newGods.txt", "gods.txt");
             menu();
         }
     }
@@ -176,7 +173,7 @@ class loginZeus{
         string usernameMatch;
         string passwordMatch;
         bool authenticate;
-        char godId[5];
+        int godId;
         char godName[20];
         char romanName[20];
         

@@ -46,6 +46,7 @@ class loginZeus{
                     break;
                 case 4: 
                     cout << "see all gods";
+                    showGods();
                     break;
                 default:
                     cout << "ivalid choice, for the gods sake try again";
@@ -174,6 +175,22 @@ class loginZeus{
             rename("newGods.txt", "gods.txt");
             menu();
         }
+    }
+
+    void showGods()
+    {
+        fstream file;
+        file.open("gods.txt", ios::in);
+        cout << "\n\n|________________________________\n";
+        cout << "God Id\t\tGreek Name\t\tRoman Name\n";
+        cout << "\n\n|________________________________\n";
+        file >> godId >> godName >> romanName;
+        while (!file.eof())
+        {
+            cout << godId << "\t\t" << godName << "\t\t" << romanName << "\n";
+            file >> godId >> godName >> romanName;
+        }
+        file.close();
     }
 
     void login(){

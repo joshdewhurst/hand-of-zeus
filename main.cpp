@@ -38,6 +38,7 @@ class loginZeus{
                     break;
                 case 2:
                     cout << "edit a god";
+                    editGod();
                     break;
                 case 3:
                     cout << "delete a god";
@@ -78,6 +79,61 @@ class loginZeus{
             addGod();
         }
         menu();
+    }
+
+    void editGod()
+    {
+        fstream file, newFile;
+        int matchId;
+        int found = 0;
+        string name, roman;
+        int id;
+
+        cout << "\n\t\t Edit a god";
+        cout << "\n\t\t What is the god's ID?";
+        cin >> matchId;
+
+        file.open("gods.txt", ios::in);
+        if (!file)
+        {
+            cout << "\n\t\t\t The gods are at it again...the file is lost";
+            file.close();
+        }
+        else
+        {
+            newFile.open("newGods.txt", ios::app | ios::out);
+
+            file >> godId >> godName >> romanName;
+
+            while (!file.eof())
+            {
+                if (matchId == godId)
+                {
+                    cout << "\n\t What is the god's new ID?";
+                    cin >> id;
+                    cout << "\n\t What is the god's new Greek name?";
+                    cin >> name;
+                    cout << "\n\t What is the god's new Roman name?";
+                    cin >> roman;
+                    newFile << " " << id << " "<< name << " " << roman << "\n";
+                    cout << "\n\t\t God was edited!";
+                    found ++;
+                }
+                else 
+                {
+                    cout << "God not found";
+                    newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                }
+                file >> godId >> godName >> romanName;
+            }
+            file.close();
+            newFile.close();
+
+            remove("gods.txt");
+            rename("newGods.txt","gods.txt");
+
+            menu();
+        }
     }
 
     void deleteGod()

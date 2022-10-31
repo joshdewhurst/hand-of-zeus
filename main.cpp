@@ -33,7 +33,8 @@ class loginZeus{
             cout << "\n\n\n\t\t 3. Delete a god";
             cout << "\n\n\n\t\t 4. Search for a god";
             cout << "\n\n\n\t\t 5. See all gods";
-            cout << "\n\n\n\t\t 6. Exit program \n\n\n";
+            cout << "\n\n\n\t\t 6. Admin Settings";
+            cout << "\n\n\n\t\t 7. Exit program \n\n\n";
 
             int selection;
             cin >> selection;
@@ -56,6 +57,9 @@ class loginZeus{
                     showGods();
                     break;
                 case 6:
+                admin();
+                break;
+                case 7:
                     exit(0);
                     break;
                 default:
@@ -397,10 +401,10 @@ class loginZeus{
             cout << "\t\t\t\t                                            \n";
             cout << "\t\t\t\t____________________________________________\n";
 
-        cout << "\n\t\t Would You like to see a list of all gods? (Yes or No)";
+        cout << "\n\t\t Would You like to see a list of all gods? (Y or N)";
         cin >> choice;
 
-        if (choice == "yes" | choice =="Yes")
+        if (choice == "y" | choice =="Y")
         {
             system("clear");
             cout << "\n\n\n God Id\t\tGreek Name\t\tRoman Name\t\t\n";
@@ -440,6 +444,85 @@ class loginZeus{
             }
         }
     }
+
+    void admin()
+    {
+        cout << "\t\t\t\t____________________________________________\n";
+        cout << "\t\t\t\t                                            \n";
+        cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+        cout << "\t\t\t\t              Admin Settings:               \n";
+        cout << "\t\t\t\t                                            \n";
+        cout << "\t\t\t\t____________________________________________\n";
+
+        cout << "\n\n\t\t\t\t You are currently logged in as the kind of the gods:" << "\n\t\t\t\t" << username;
+
+        cout << "\n\n\t\t\t\t What would you like to do?";
+
+        cout << "\n\n\n\t\t 1. Edit Username";
+        cout << "\n\n\n\t\t 2. Edit Password";
+        cout << "\n\n\n\t\t 3. Return to Main Menu";
+        cout << "\n\n\n\t\t 4. Log Off Program \n\n";
+
+        int selection;
+            cin >> selection;
+            // switch expressions have cases to choice from 
+            switch (selection)
+            {
+                case 1:
+                    editUsername();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    menu();
+                    break;
+                case 4:
+                    exit(0);
+                    break;
+                default:
+                cout << "\t\t\t\t ivalid choice, for the gods sake try again";
+                admin();
+            }
+    }
+
+    void editUsername()
+        {
+            system("clear");
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t       Admin Settings: Edit username        \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
+
+            
+
+            cout << "\n\n\t\t\t\t Your current username is: \t\t" << username << "\n";
+            string newusername;
+
+            cout << "\n\n\t\t\t\t What would you like your new username to be? \n\n";
+            cin >> newusername;
+
+            fstream file;
+            file.open("newUsers.txt", ios::out | ios::app);
+            file << newusername << "\n";
+            file.close();
+
+            remove("users.txt");
+            rename("newUsers.txt","users.txt");
+            
+            cout << "\n\n\t\t\t\t Your username was succesfully updated to: \n\t\t\t\t" << newusername;
+            
+            string menuinput;
+            cout << "\n\t\t Type -Admin- to return to admin settings \n\n";
+            cin >> menuinput;
+            if (menuinput == "admin" | menuinput == "Admin" | menuinput == "-admin-" | menuinput == "-Admin-")
+            {
+                admin();
+            }
+        
+        }
+
 
     void login(){
         // cout is a response in console

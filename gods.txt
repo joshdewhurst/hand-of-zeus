@@ -1,7 +1,6 @@
-1 Zeus Jupiter
-2 Hera Junp
-3 Poseidon Neptune
-14 Athena Minerva
-5 Apollo Apollo
-6 Hermes Mercury
-7 War Ares
+ 1 Zeus Jupiter
+ 2 Hera Juno
+ 3 Poseidon Neptune
+ 5 Apollo Apollo
+ 6 Hermes Mercury
+56 Ares Mars

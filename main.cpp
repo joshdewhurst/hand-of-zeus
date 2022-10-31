@@ -31,7 +31,8 @@ class loginZeus{
             cout << "\n\n\n\t\t 1. Create a god";
             cout << "\n\n\n\t\t 2. Edit a god";
             cout << "\n\n\n\t\t 3. Delete a god";
-            cout << "\n\n\n\t\t 4. See all gods \n\n\n";
+            cout << "\n\n\n\t\t 4. See all gods";
+            cout << "\n\n\n\t\t 5. Exit program \n\n\n";
 
             int selection;
             cin >> selection;
@@ -49,6 +50,9 @@ class loginZeus{
                     break;
                 case 4: 
                     showGods();
+                    break;
+                case 5:
+                    exit(0);
                     break;
                 default:
                     cout << "\t\t\t\t ivalid choice, for the gods sake try again";
@@ -68,22 +72,39 @@ class loginZeus{
             cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
             cout << "\t\t\t\t            Creating a New God:             \n";
             cout << "\t\t\t\t                                            \n";
-            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t____________________________________________\n\n\n\n";
 
-            cout << "\t\t please enter the god Id [max 6 digets]: \n" << endl;
-            cin >> godId;
-            cout << "\t\t please enter the god's name: \n" << endl;
-            cin >> godName;
-            cout << "\t\t What is their roman name? \n";
-            cin >> romanName;
-            cout << "\t\t What are they the god of? \n";
-            cin.ignore();
-            getline(cin, godOf);
+            string createchoice;
+            cout << "\n\n\t\t\t\t Would you like to proceed with deleting a god? (Y or N)\n\n";
+            cin >> createchoice;
 
-            // inserting the godName into a file, but putting a new line for each new god that is created
-            file.open("gods.txt", ios::out | ios::app);
-            file << godId << " " << godName << " " << romanName << " " << godOf << "\n";
-            file.close();
+            if (createchoice == "y" | createchoice == "Y")
+            {
+                cout << "\n\n\t\t please enter the god Id [max 6 digets]: \n\n" << endl;
+                cin >> godId;
+                cout << "\t\t please enter the god's name: \n" << endl;
+                cin >> godName;
+                cout << "\t\t What is their roman name? \n";
+                cin >> romanName;
+                // godOf messed the whole system up for some reason
+                // cout << "\t\t What are they the god of? \n";
+                // cin.ignore();
+                // getline(cin, godOf);
+
+                // inserting the godName into a file, but putting a new line for each new god that is created
+                file.open("gods.txt", ios::out | ios::app);
+                file << godId << " " << godName << " " << romanName <<  "\n";
+                file.close();
+            }
+            else if (createchoice == "n" | createchoice == "N")
+            {
+                menu();
+            }
+            else 
+            {
+                cout << "\n\t\t\t\t Invalid Input, returning to main menu.";
+                menu();
+            }
         }
         else{
             cout << "unable to acces creation file, try again";
@@ -105,7 +126,7 @@ class loginZeus{
             cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
             cout << "\t\t\t\t          Edit and Existing God:            \n";
             cout << "\t\t\t\t                                            \n";
-            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t____________________________________________\n\n\n\n";
 
         cout << "\n\t\t What is the god's ID?";
         cin >> matchId;
@@ -176,27 +197,70 @@ class loginZeus{
         }
         else
         {
-            cout << "Please enter the god ID of the god you are sending to Tartarus:";
-            cin >> matchId;
-            newFile.open("newGods.txt", ios::app | ios::out);
-            file >> godId >> godName >> romanName;
-            while (!file.eof())
+            string deletechoice;
+            cout << "\n\n\t\t\t\t Would you like to proceed with deleting a god? (Y or N)\n\n";
+            cin >> deletechoice;
+
+            if (deletechoice == "y" | deletechoice =="Y")
             {
-                if (godId == matchId)
+                cout << "\n\n\t\t\t\t Please enter the god ID of the god you are sending to Tartarus:\n\n";
+                cin >> matchId;
+                newFile.open("newGods.txt", ios::app | ios::out);
+                file >> godId >> godName >> romanName;
+                while (!file.eof())
                 {
-                    cout << "\n\t\t God was banished";
-                    found++;
-                } else 
-                {
-                    newFile << " " << godId << " " << godName << " " << romanName << '\n';
+                    if (godId == matchId)
+                    {
+                        cout << "\n\t\t\t\t God was banished";
+                        found++;
+                    } else 
+                    {
+                        newFile << " " << godId << " " << godName << " " << romanName << '\n';
+                    }
+                    file >> godId >> godName >>romanName;
                 }
-                file >> godId >> godName >>romanName;
+                newFile.close();
+                file.close();
+                remove("gods.txt");
+                rename("newGods.txt", "gods.txt");
+                string banishinput;
+                cout << "\n\n\t\t\t\t Would you like to banish another god? (Y or N) \n\n";
+                cin >> banishinput;
+                if (banishinput == "Y" | banishinput == "y" | banishinput == "yes" | banishinput == "Yes")
+                {
+                    deleteGod();
+                }
+                else if (banishinput == "N" | banishinput == "n" | banishinput == "No" | banishinput == "no")
+                {
+                    string secondChoice;
+                    cout << "\n\t\t\t\t Hit A to return to main menu, hit B exit program \n";
+                    cin >> secondChoice;
+                    if (secondChoice == "a" | secondChoice =="A")
+                    {
+                    menu();
+                    }
+                    else if(secondChoice == "b" | secondChoice == "B")
+                    {
+                        exit(0);
+                    }
+                    else{
+                    cout << "\n\t\t\t\t Invalid input, redirecting to See All Gods";
+                    showGods();
+                    }
+                }
+                else {
+                    cout << "/n/n/t/t/t/t Invalid Input, returning to Delete Gods";
+                }
             }
-            newFile.close();
-            file.close();
-            remove("gods.txt");
-            rename("newGods.txt", "gods.txt");
-            menu();
+            else if (deletechoice == "n" | deletechoice == "N")
+            {
+                menu();
+            }
+            else 
+            {
+                cout << "\n\t\t\t\t Invalid Input, returning to main menu.";
+                menu();
+            }
         }
     }
 
@@ -221,12 +285,12 @@ class loginZeus{
         if (choice == "yes" | choice =="Yes")
         {
             system("clear");
-            cout << "\n\n\n God Id\t\tGreek Name\t\tRoman Name\t\tGod Of\n";
+            cout << "\n\n\n God Id\t\tGreek Name\t\tRoman Name\t\t\n";
             cout << "\n\n";
-            file >> godId >> godName >> romanName >> godOf;
+            file >> godId >> godName >> romanName;
             while (!file.eof())
             {
-                cout << godId << "\t\t" << godName << "\t\t" << romanName << "\t\t" << godOf << "\n";
+                cout << godId << "\t\t" << godName << "\t\t" << romanName << "\n";
                 file >> godId >> godName >> romanName;
             }
             file.close();

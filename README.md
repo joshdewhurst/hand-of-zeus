@@ -20,7 +20,7 @@ Hand of Zues is a C++ management system. Zues, the admin, is able to perform dif
 5. Have fun!
 ___
 ![Main Menu, Hand of Zeus](https://user-images.githubusercontent.com/108956371/199040889-f2f5fcea-df9d-4df5-91c8-dc71224dee74.png)
----
+___
 ![Home Screen, Hand of Zeus](https://user-images.githubusercontent.com/108956371/199040926-57f4911a-1768-4a5b-8d88-55c14122fea6.png)
 
 ___

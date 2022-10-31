@@ -472,6 +472,7 @@ class loginZeus{
                     editUsername();
                     break;
                 case 2:
+                    editPassword();
                     break;
                 case 3:
                     menu();
@@ -512,6 +513,7 @@ class loginZeus{
             rename("newUsers.txt","users.txt");
             
             cout << "\n\n\t\t\t\t Your username was succesfully updated to: \n\t\t\t\t" << newusername;
+            username = getFile("users.txt");
             
             string menuinput;
             cout << "\n\t\t Type -Admin- to return to admin settings \n\n";
@@ -520,9 +522,78 @@ class loginZeus{
             {
                 admin();
             }
+            else 
+            {
+                cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                menu();
+            }
         
         }
 
+    void editPassword()
+    {
+        system("clear");
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t       Admin Settings: Edit Password        \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
+
+            
+            string newpassword, matchPassword;
+
+            cout << "\n\n\t\t\t\t Please Enter Your Current Password: \n";
+            cin >> matchPassword;
+            if (matchPassword == password)
+            {
+                cout << "\n\n\t\t\t\t What would you like your new password to be? \n\n";
+                cin >> newpassword;
+
+                string passwordCheck;
+                cout << "\n\n\t\t\t\t Please re-enter new password. \n\n";
+                cin >> passwordCheck;
+
+                if (newpassword == passwordCheck)
+                {
+                    fstream file;
+                    file.open("newpassword.txt", ios::out | ios::app);
+                    file << newpassword << "\n";
+                    file.close();
+
+                    remove("password.txt");
+                    rename("newpassword.txt","password.txt");
+                    
+                    cout << "\n\n\t\t\t\t Your password was succesfully updated! \n";
+                    password = getFile("password.txt");
+                    
+                    string menuinput;
+                    cout << "\n\t\t Type -Admin- to return to admin settings \n\n";
+                    cin >> menuinput;
+                    if (menuinput == "admin" | menuinput == "Admin" | menuinput == "-admin-" | menuinput == "-Admin-")
+                    {
+                        admin();
+                    }
+                    else 
+                    {
+                        cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu. \n";
+                        menu();
+                    }
+                }
+                else
+                {
+                    // setting newpassword to null and having the user start over
+                    newpassword = "";
+                    cout << "\n\n\t\t\t\t Passwords did not match, please try again \n\n";
+                    editPassword();
+                }
+            }
+            else
+            {
+                cout << "\n\n\t\t\t Invalid Input. \n";
+                editPassword();
+            }
+    }
 
     void login(){
         // cout is a response in console
@@ -553,7 +624,7 @@ class loginZeus{
                 menu();
             }
             else {
-                cout << "/n/t/t/t/t Incorrect identification, don't get the gods upset. Try again.";
+                cout << "\n\t\t\t\t Incorrect identification, don't get the gods upset. Try again.";
                 login();
             }
         }

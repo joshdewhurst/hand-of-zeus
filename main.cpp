@@ -31,8 +31,9 @@ class loginZeus{
             cout << "\n\n\n\t\t 1. Create a god";
             cout << "\n\n\n\t\t 2. Edit a god";
             cout << "\n\n\n\t\t 3. Delete a god";
-            cout << "\n\n\n\t\t 4. See all gods";
-            cout << "\n\n\n\t\t 5. Exit program \n\n\n";
+            cout << "\n\n\n\t\t 4. Search for a god";
+            cout << "\n\n\n\t\t 5. See all gods";
+            cout << "\n\n\n\t\t 6. Exit program \n\n\n";
 
             int selection;
             cin >> selection;
@@ -48,10 +49,13 @@ class loginZeus{
                 case 3:
                     deleteGod();
                     break;
-                case 4: 
+                case 4:
+                    searchGod();
+                    break;
+                case 5: 
                     showGods();
                     break;
-                case 5:
+                case 6:
                     exit(0);
                     break;
                 default:
@@ -75,7 +79,7 @@ class loginZeus{
             cout << "\t\t\t\t____________________________________________\n\n\n\n";
 
             string createchoice;
-            cout << "\n\n\t\t\t\t Would you like to proceed with deleting a god? (Y or N)\n\n";
+            cout << "\n\n\t\t\t\t Would you like to proceed with creating a god? (Y or N)\n\n";
             cin >> createchoice;
 
             if (createchoice == "y" | createchoice == "Y")
@@ -128,51 +132,67 @@ class loginZeus{
             cout << "\t\t\t\t                                            \n";
             cout << "\t\t\t\t____________________________________________\n\n\n\n";
 
-        cout << "\n\t\t What is the god's ID?";
-        cin >> matchId;
+            string editchoice;
+            cout << "\n\n\t\t\t\t Would you like to proceed with deleting a god? (Y or N)\n\n";
+            cin >> editchoice;
 
-        file.open("gods.txt", ios::in);
-        if (!file)
-        {
-            cout << "\n\t\t\t The gods are at it again...the file is lost";
-            file.close();
-        }
-        else
-        {
-            newFile.open("newGods.txt", ios::app | ios::out);
-
-            file >> godId >> godName >> romanName;
-
-            while (!file.eof())
+            if (editchoice == "y" | editchoice =="Y")
             {
-                if (matchId == godId)
+                cout << "\n\t\t What is the god's id";
+                cin >> matchId;
+
+                file.open("gods.txt", ios::in);
+                if (!file)
                 {
-                    cout << "\n\t What is the god's new ID?";
-                    cin >> id;
-                    cout << "\n\t What is the god's new Greek name?";
-                    cin >> name;
-                    cout << "\n\t What is the god's new Roman name?";
-                    cin >> roman;
-                    newFile << " " << id << " "<< name << " " << roman << "\n";
-                    cout << "\n\t\t God was edited!";
-                    found ++;
+                    cout << "\n\t\t\t The gods are at it again...the file is lost";
+                    file.close();
                 }
-                else 
+                else
                 {
-                    cout << "God not found";
-                    newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                    newFile.open("newGods.txt", ios::app | ios::out);
+
+                    file >> godId >> godName >> romanName;
+
+                    while (!file.eof())
+                    {
+                        if (matchId == godId)
+                        {
+                            cout << "\n\t What is the god's new ID?";
+                            cin >> id;
+                            cout << "\n\t What is the god's new Greek name?";
+                            cin >> name;
+                            cout << "\n\t What is the god's new Roman name?";
+                            cin >> roman;
+                            newFile << " " << id << " "<< name << " " << roman << "\n";
+                            cout << "\n\t\t God was edited!";
+                            found ++;
+                        }
+                        else 
+                        {
+                            cout << "God not found";
+                            newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                        }
+                        file >> godId >> godName >> romanName;
+                    }
+                    file.close();
+                    newFile.close();
+
+                    remove("gods.txt");
+                    rename("newGods.txt","gods.txt");
+
+                    menu();
                 }
-                file >> godId >> godName >> romanName;
             }
-            file.close();
-            newFile.close();
-
-            remove("gods.txt");
-            rename("newGods.txt","gods.txt");
-
-            menu();
-        }
-    }
+            else if (editchoice == "n" | editchoice == "N")
+            {
+                menu();
+            }
+            else 
+            {
+                cout << "\n\t\t\t\t Invalid Input, returning to main menu.";
+                menu();
+            }    
+     }
 
     void deleteGod()
     {
@@ -262,6 +282,104 @@ class loginZeus{
                 menu();
             }
         }
+    }
+
+    void searchGod()
+    {
+        system("clear");
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t             Search for a God:              \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
+
+            fstream file;
+            int matchId;
+
+            string searchchoice;
+            cout << "\n\n\t\t\t\t Would you like to proceed with searching for a god? (Y or N)\n\n";
+            cin >> searchchoice;
+
+            if (searchchoice == "y" | searchchoice =="Y")
+            {
+                cout << "\n\t\t What is the god's id \n\n";
+                cin >> matchId;
+
+                file.open("gods.txt", ios::in);
+                if(!file)
+                {
+                    cout << "\n\t\t\t The gods are at it again...the file is lost";
+                    file.close();
+                }
+                else 
+                {
+                    int c=0;
+                    file >> godId >> godName >> romanName;
+                    while (!file.eof())
+                    {
+                        if (matchId == godId)
+                        {
+                            cout << "\n\n\n God Id\t\tGreek Name\t\tRoman Name\t\t\n";
+                            cout << "\n\n";
+                            cout << godId << "\t\t" << godName << "\t\t" << romanName << "\n";
+                            c++;
+                        }
+                        file >> godId >> godName >> romanName;
+                    }
+                    if (c == 0)
+                    {
+                        cout << "\n\t\t\t\t The god with that Id was not found.";
+                        string tryagain;
+                        cout << "\n\n\t\t\t\t Would you like to try to search again? (Y or N)";
+                        cin >> tryagain;
+                        if (tryagain =="y" | tryagain == "Y"){
+                            searchGod();
+                        }
+                        else {
+                            menu();
+                        }
+                    }
+                    file.close();
+                    string searchagain;
+                    cout << "\n\n\t\t\t\t Would you like to try to search again? (Y or N)";
+                    cin >> searchagain;
+                    if (searchagain =="y" | searchagain == "Y"){
+                            searchGod();
+                        }
+                    else if (searchagain == "n" | searchagain == "N") {
+                            menu();
+                        }
+                    else 
+                    {
+                        cout << "\n\n\t\t\t\t Invalid input, redirecting to main menu.";
+                        menu();
+                    }
+                }
+            }
+            else if (searchchoice == "n" | searchchoice == "N")
+            {
+                string secondChoice;
+                    cout << "\n\t\t\t\t Hit A to return to main menu, hit B exit program \n";
+                    cin >> secondChoice;
+                    if (secondChoice == "a" | secondChoice =="A")
+                    {
+                    menu();
+                    }
+                    else if(secondChoice == "b" | secondChoice == "B")
+                    {
+                        exit(0);
+                    }
+                    else{
+                    cout << "\n\t\t\t\t Invalid input, redirecting to See All Gods";
+                    showGods();
+                    }
+            }
+            else 
+            {
+                cout << "\n\n\t\t\t\t Invalid Input, directing to main menu.";
+                menu();
+            }
     }
 
     void showGods()

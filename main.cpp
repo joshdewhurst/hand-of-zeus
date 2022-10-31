@@ -606,32 +606,62 @@ class loginZeus{
 
         cout << "\n\n\n\t\t The Hand of Zeus is a data management system created completely with C++ and expands on the object oriented programming capabilities of the language. With the Hand of Zeus, the king of the gods can manage the pantheon and help keep the divine organized. Please enjoy the introduction to C++ and some examples of its uses.         \n\n\t\t\t\t\t\t- Josh\n";
 
-        cout << "\n\n\n\n\t\t\t To begin, please enter your almighty name (username): \n";
-        // cin is input from user
-        cin >> usernameMatch;
-
-        // retreaving the username from a file
-        username = getFile("users.txt");
-
-        if(usernameMatch == username){
-            cout << "\n\n\t\t\t\t please enter the almighty password: \n";
-            cin >> passwordMatch;
-
-            password = getFile("password.txt");
-
-            if(passwordMatch == password) {
-                cout << "\n\t\t\t\t Welcome Zeus, the power is in your hands.";
-                menu();
-            }
-            else {
-                cout << "\n\t\t\t\t Incorrect identification, don't get the gods upset. Try again.";
+        fstream file1, file2;
+        ifstream file("users.txt");
+        file.seekg(0,ios::end); // points to the end of file
+        int length = file.tellg();
+        
+        if (length == 0)
+        {
+            cout << "\n\n\n\n\t\t\t Admin settings are not yet defined oh mighty Zeus \n";
+            string user, pass, pass2;
+            cout << "\n\t\t\t\t What shall your username be? \n";
+                cin >> user;
+                file1.open("users.txt", ios::out | ios::app);
+                file1 <<  user << "\n";
+                file1.close();
+            cout << "\n\t\t\t\t And your your password? \n";
+            cin >> pass;
+            cout << "\n\t\t\t\t Please enter your password once more. \n";
+            cin >> pass2;
+            if (pass == pass2)
+            {
+                file2.open("password.txt", ios::out | ios::app);
+                file2 <<  pass << "\n";
+                file2.close();
                 login();
             }
         }
-        else {
-            cout << "wrong username";
-            login();
+        else
+        {
+            cout << "\n\n\n\n\t\t\t To begin, please enter your almighty name (username): \n";
+            // cin is input from user
+            cin >> usernameMatch;
+
+            // retreaving the username from a file
+            username = getFile("users.txt");
+
+            if(usernameMatch == username){
+                cout << "\n\n\t\t\t\t please enter the almighty password: \n";
+                cin >> passwordMatch;
+
+                password = getFile("password.txt");
+
+                if(passwordMatch == password) {
+                    cout << "\n\t\t\t\t Welcome Zeus, the power is in your hands.";
+                    menu();
+                }
+                else {
+                    cout << "\n\t\t\t\t Incorrect identification, don't get the gods upset. Try again.";
+                    login();
+                }
+            }
+            else {
+                cout << "wrong username";
+                login();
+            }
         }
+        
     }
 
     // define a function to retrieve the password and usernames from a stored file

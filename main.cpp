@@ -137,7 +137,7 @@ class loginZeus{
             cout << "\t\t\t\t____________________________________________\n\n\n\n";
 
             string editchoice;
-            cout << "\n\n\t\t\t\t Would you like to proceed with deleting a god? (Y or N)\n\n";
+            cout << "\n\n\t\t\t\t Would you like to proceed with editing a god? (Y or N)\n\n";
             cin >> editchoice;
 
             if (editchoice == "y" | editchoice =="Y")
@@ -256,20 +256,17 @@ class loginZeus{
                 }
                 else if (banishinput == "N" | banishinput == "n" | banishinput == "No" | banishinput == "no")
                 {
-                    string secondChoice;
-                    cout << "\n\t\t\t\t Hit A to return to main menu, hit B exit program \n";
-                    cin >> secondChoice;
-                    if (secondChoice == "a" | secondChoice =="A")
+                    string menuinput;
+                    cout << "\n\t\t Type -Menu- to return to admin settings \n\n";
+                    cin >> menuinput;
+                    if (menuinput == "menu" | menuinput == "Menu" | menuinput == "-menu-" | menuinput == "-Menu-")
                     {
-                    menu();
+                        admin();
                     }
-                    else if(secondChoice == "b" | secondChoice == "B")
+                    else 
                     {
-                        exit(0);
-                    }
-                    else{
-                    cout << "\n\t\t\t\t Invalid input, redirecting to See All Gods";
-                    showGods();
+                        cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                        menu();
                     }
                 }
                 else {
@@ -461,7 +458,7 @@ class loginZeus{
         cout << "\n\n\n\t\t 1. Edit Username";
         cout << "\n\n\n\t\t 2. Edit Password";
         cout << "\n\n\n\t\t 3. Return to Main Menu";
-        cout << "\n\n\n\t\t 4. Log Off Program \n\n";
+        cout << "\n\n\n\t\t 4. Log Off Program";
         cout << "\n\n\n\t\t 5. Delete Your Account \n\n";
 
         int selection;
@@ -705,7 +702,8 @@ class loginZeus{
         }
         else
         {
-            cout << "\n\n\n\n\t\t\t To begin, please enter your almighty name (username): \n";
+            cout << "\n\n\n\n\t\t\t Welcome Back\n";
+            cout << "\n\n\n\n\t\t\t Please enter your almighty name (username): \n";
             // cin is input from user
             cin >> usernameMatch;
 

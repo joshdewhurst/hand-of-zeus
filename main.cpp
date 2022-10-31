@@ -142,7 +142,7 @@ class loginZeus{
 
             if (editchoice == "y" | editchoice =="Y")
             {
-                cout << "\n\t\t What is the god's id";
+                cout << "\n\t\t\t\t What is the god's id\n\n";
                 cin >> matchId;
 
                 file.open("gods.txt", ios::in);
@@ -161,11 +161,12 @@ class loginZeus{
                     {
                         if (matchId == godId)
                         {
-                            cout << "\n\t What is the god's new ID?";
+                            cout << "\n\t\t\t\tYou are currebtly editting " << godName << ", their ID number is: " << godId << ", and their Roman name is: " << romanName << "\n";
+                            cout << "\n\t\t\t\t What shall the new ID be?\n\n";
                             cin >> id;
-                            cout << "\n\t What is the god's new Greek name?";
+                            cout << "\n\t\t\t\t What is the god's new Greek name?\n\n";
                             cin >> name;
-                            cout << "\n\t What is the god's new Roman name?";
+                            cout << "\n\t\t\t\t What is the god's new Roman name?\n\n";
                             cin >> roman;
                             newFile << " " << id << " "<< name << " " << roman << "\n";
                             cout << "\n\t\t God was edited!";

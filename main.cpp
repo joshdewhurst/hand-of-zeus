@@ -199,6 +199,14 @@ class loginZeus{
 
     void login(){
         // cout is a response in console
+
+        cout << "\t\t\t\t____________________________________________\n";
+        cout << "\t\t\t\t                                            \n";
+        cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+        cout << "\t\t\t\t                                            \n";
+        cout << "\t\t\t\t____________________________________________\n";
+
+
         cout << "\t please enter your almighty name username: \n";
         // cin is input from user
         cin >> usernameMatch;

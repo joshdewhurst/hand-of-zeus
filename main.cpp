@@ -462,6 +462,7 @@ class loginZeus{
         cout << "\n\n\n\t\t 2. Edit Password";
         cout << "\n\n\n\t\t 3. Return to Main Menu";
         cout << "\n\n\n\t\t 4. Log Off Program \n\n";
+        cout << "\n\n\n\t\t 5. Delete Your Account \n\n";
 
         int selection;
             cin >> selection;
@@ -479,6 +480,9 @@ class loginZeus{
                     break;
                 case 4:
                     exit(0);
+                    break;
+                case 5:
+                    deleteUser();
                     break;
                 default:
                 cout << "\t\t\t\t ivalid choice, for the gods sake try again";
@@ -595,6 +599,72 @@ class loginZeus{
             }
     }
 
+    void deleteUser()
+    {
+        system("clear");
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t        Admin Settings: Delete User         \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
+
+        string choice;
+        cout << "\n\n\t\t\t\t Would you like to delete your account? (Y or N)";
+        cin >> choice;
+        if (choice == "y" | choice == "Y")
+        {
+            string choice2;
+            cout << "\n\n\t\t\t\tThis is your last chance before we send your information to the fates. \n";
+            cout << "\n\t\t\t\tAre you sure you want to delete your account? (Y or N) \n\n";
+            cin >> choice2;
+            if (choice2 == "y" | choice2 == "Y")
+            {
+                std::ofstream file1, file2;
+                file1.open("password.txt", std::ofstream::out | std::ofstream::trunc); 
+                file2.open("users.txt", std::ofstream::out | std::ofstream::trunc);
+                file1.close();
+                file2.close();
+                login();
+            }
+            else if (choice2 == "n" | choice2 == "N")
+            {
+                string menuinput;
+                cout << "\n\t\t Type -Admin- to return to admin settings \n\n";
+                cin >> menuinput;
+                if (menuinput == "admin" | menuinput == "Admin" | menuinput == "-admin-" | menuinput == "-Admin-")
+                {
+                    admin();
+                }
+                else 
+                {
+                    cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                    menu();
+                }
+            }
+        }
+        else if (choice == "n" | choice == "N")
+        {
+            string menuinput;
+            cout << "\n\t\t Type -Admin- to return to admin settings \n\n";
+            cin >> menuinput;
+            if (menuinput == "admin" | menuinput == "Admin" | menuinput == "-admin-" | menuinput == "-Admin-")
+            {
+                admin();
+            }
+            else 
+            {
+                cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                menu();
+            }
+        }
+        else 
+            {
+                cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                menu();
+            }
+    }
+
     void login(){
         // cout is a response in console
 
@@ -608,6 +678,7 @@ class loginZeus{
 
         fstream file1, file2;
         ifstream file("users.txt");
+        
         file.seekg(0,ios::end); // points to the end of file
         int length = file.tellg();
         
@@ -620,7 +691,7 @@ class loginZeus{
                 file1.open("users.txt", ios::out | ios::app);
                 file1 <<  user << "\n";
                 file1.close();
-            cout << "\n\t\t\t\t And your your password? \n";
+            cout << "\n\t\t\t\t And your password? \n";
             cin >> pass;
             cout << "\n\t\t\t\t Please enter your password once more. \n";
             cin >> pass2;

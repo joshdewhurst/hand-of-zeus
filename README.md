@@ -14,17 +14,17 @@ C++ was used to program the entire management system. VS Code was used as my com
 1. iostream
     1. `iostream` is used for standard input/output stream objects; such as `cin` and `cout`
 2. fstream
-  i. `fstream` is an input/output stream class to operate on files. This was used to access my `.txt` files and be able to manipulate and read them to update and display data.
+    1. `fstream` is an input/output stream class to operate on files. This was used to access my `.txt` files and be able to manipulate and read them to update and display data.
 3. vector
-  i. `vector` was included when I was brainstorming using a `.csv` file to store my data and have it seperated in with commas. The `vector` library would have been used to clasify the data type vector and be able to create vectors from my input data, to then manipulate through index numbers, as vectors are sequence containers.
+    1. `vector` was included when I was brainstorming using a `.csv` file to store my data and have it seperated in with commas. The `vector` library would have been used to clasify the data type vector and be able to create vectors from my input data, to then manipulate through index numbers, as vectors are sequence containers.
 4. string
-  i. `string` introduces string types, character traits and a set of converting functions. These functions can range from converting a string to an integer using `stoi` or `to_string` which converts numbers to a string. In C++ every character is assigned a numerical value, and those values can be compared using the string library.
+    1. `string` introduces string types, character traits and a set of converting functions. These functions can range from converting a string to an integer using `stoi` or `to_string` which converts numbers to a string. In C++ every character is assigned a numerical value, and those values can be compared using the string library.
 5. stdio.h
-  i. `stdio.h` was used to perform Input/Output operations on my files. For example the `remove` and `rename` function are from this library. You can also use `printf` to print formatted data to stdout, similar to a `console.log` in javascript to check your work as you code.
+    1. `stdio.h` was used to perform Input/Output operations on my files. For example the `remove` and `rename` function are from this library. You can also use `printf` to print formatted data to stdout, similar to a `console.log` in javascript to check your work as you code.
 6. stdlib.h
-  i. `stdlib.h` defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting. For the purpose of my project it was used to call the `exit()` function to end the program.
+    1. `stdlib.h` defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting. For the purpose of my project it was used to call the `exit()` function to end the program.
 7. sstream
-  i. `sstream` is a library that provides string stream classes. For the purpose of my project, this allowed me to use `.eof()` and in creating my system I also tickered with the `getline()` function, both are within the `sstream` library
+    1. `sstream` is a library that provides string stream classes. For the purpose of my project, this allowed me to use `.eof()` and in creating my system I also tickered with the `getline()` function, both are within the `sstream` library
 
 
 

@@ -635,12 +635,12 @@ class loginZeus{
     }
 
     // define a function to retrieve the password and usernames from a stored file
-    string getFile(const char* p_file)
+    string getFile(const char* file1)
         {
             string line;
             fstream file;
 
-            file.open(p_file, ios::in);
+            file.open(file1, ios::in);
             if(file.is_open())
                 {
                     getline(file, line);
@@ -649,6 +649,7 @@ class loginZeus{
 
             return line;
         }
+
 
     // only Zeus can access the following
      private:

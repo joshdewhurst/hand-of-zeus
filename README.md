@@ -2,7 +2,7 @@
 
 ![picture of Zues](https://i.pinimg.com/originals/a0/9b/f2/a09bf213e173fd54848d3e17ecd127a2.jpg)
 ---
-Hand of Zues will be a C++ database management system. Zues, the admin, is able to perform different oporations to change the systems' data. C++ libraries will be used to track operations that create a new entry, delete an entry, or edit an entry within the database. The user will also be able to edit their username and password. 
+Hand of Zues is a C++ management system. Zues, the admin, is able to perform different oporations to change the systems' data. C++ libraries will be used to track operations that create a new entry, delete an entry, or edit an entry within the database. The user will also be able to edit their username and password. 
 
 ---
 ## Installation Instruction
@@ -41,14 +41,6 @@ C++ was used to program the entire management system. VS Code was used as my com
     1. `sstream` is a library that provides string stream classes. For the purpose of my project, this allowed me to use `.eof()` and in creating my system I also tickered with the `getline()` function, both are within the `sstream` library
 
 ---
-# My Approach
-
-Going into this project, I had no clue where to start with C++. I had only seen it on job applications and knew that it was powerful enough for Google to use the language in their development. I researched starter C++ projects on GeeksForGeeks, and decided on a management system because I see the applicability of it across many fields.
-
-I created a timeline and challenged myself to be realistic in learning a new language and tackling a bigger project. I watched over 18 hours of lecture on C++ along with code alongs to familiarize myself with C++ libraries and methods and syntax. This was probably my favorite part, because I haven't done as extensive of a deep dive as this before. 
-
-After doing research and watching lectures, I decided to start small and work my way out. I started by creating a basic user authentication and authorization method, and then started to fill out my functionality for my program. Once I completed the bones of my project I was able to style it--in a way--and put my personal touch on it. I was a Classics major in college and was happy to create a Greek and Roman themed project to show my love for ancient Mediterranean religion.
-___
 # User Stories
 
 ## An admin should be able to:
@@ -58,6 +50,23 @@ ___
 4. log out.
 
 ---
+# My Approach
+
+Going into this project, I had no clue where to start with C++. I had only seen it on job applications and knew that it was powerful enough for Google to use the language in their development. I researched starter C++ projects on GeeksForGeeks, and decided on a management system because I see the applicability of it across many fields.
+
+I created a timeline and challenged myself to be realistic in learning a new language and tackling a bigger project. I watched over 18 hours of lecture on C++ along with code alongs to familiarize myself with C++ libraries and methods and syntax. This was probably my favorite part, because I haven't done as extensive of a deep dive as this before. 
+
+After doing research and watching lectures, I decided to start small and work my way out. I started by creating a basic user authentication and authorization method, and then started to fill out my functionality for my program. Once I completed the bones of my project I was able to style it--in a way--and put my personal touch on it. I was a Classics major in college and was happy to create a Greek and Roman themed project to show my love for ancient Mediterranean religion.
+___
+# Unsolved Problems and Major Hurdles
+
+* Without a doubt, one of my biggest challenges was using MacOs as my operating system. I came to learn that Lenux and Windows are used exponentially more that MacOs is the creating of C++ programs. With that comes Windows and Linux specific C++ libraries that I don't have access to, meaning common methods and solutions to problems did not work for my operating system. I had to rethink many many elements of my project because of this and spent more time than I expected trouble shooting ways to make MacOS work with the research and lectures I found.
+* I also spent 2-3 days trying to store my data in a `.csv` file. Methodically I was writing correct code that **should** have performed correctly. But I came to find out that `.csv` files are much more delecate and complex than I had originally thought. I spent so much time trouble shooting my edit and delete functions but continuously would break my computer or get stuck in endless loops due to vector strings made up of `.csv` rows....(YUCK)! I wanted a `.csv` because of the ease to transfer to spreadsheets, but once I switched to a `.txt` file, my code ran smoothy and I was able to complete MVP.
+* Editing a user can break my application since an admin can assign the same ID number to different data entries, I was not able to figure out how to fix this, or how to target a data entry by a string(name) instead of by ID(int).
+* Syntax is very very different with C++ and I continuously forgot to include punctuation throughout the project, not a hurdle, but an issue I continuously ran into...lots of `;`
+
+
+---
 # Additional Information for an Intro to C++ 
 * [W3 Schools Intro to C++](https://www.w3schools.com/cpp/cpp_intro.asp)
 * [GeeksforGeeks C++ Introduction](https://www.geeksforgeeks.org/c-plus-plus/)
@@ -65,7 +74,7 @@ ___
 * [GeeksforGeeks Project Ideas](https://www.geeksforgeeks.org/top-7-cpp-project-ideas-for-beginners/)
 
 ---
-# MVP Goals
+# Minimum Viable Product(MVP) Goals
 
 - [X] create a system that logs a user in and allows them to manage a system
 - [X] create edit/delete/create for a datapoint "god" that the admin can edit

@@ -4,8 +4,8 @@
 #include <vector>
 #include <string>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sstream>
-#define MAX_GOD_OF 250
 
 using namespace std;
 // using the standard library for naming
@@ -21,12 +21,17 @@ class loginZeus{
     void menu()
         {
             system("clear"); //clearing the screen
-            cout << "\n\n\n\t\t\t Welcome back:" << username ;
-            cout << "\n\n\n\t\t What would you like to do?";
+            
+            cout << "\n\n\n\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t                 Main Menu                  \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
             cout << "\n\n\n\t\t 1. Create a god";
             cout << "\n\n\n\t\t 2. Edit a god";
             cout << "\n\n\n\t\t 3. Delete a god";
-            cout << "\n\n\n\t\t 4. See all gods";
+            cout << "\n\n\n\t\t 4. See all gods \n\n\n";
 
             int selection;
             cin >> selection;
@@ -34,23 +39,19 @@ class loginZeus{
             switch (selection)
             {
                 case 1:
-                    cout << "\n\n\n\t\t\t create a god" << endl;
                     addGod();
                     break;
                 case 2:
-                    cout << "edit a god";
                     editGod();
                     break;
                 case 3:
-                    cout << "delete a god";
                     deleteGod();
                     break;
                 case 4: 
-                    cout << "see all gods";
                     showGods();
                     break;
                 default:
-                    cout << "ivalid choice, for the gods sake try again";
+                    cout << "\t\t\t\t ivalid choice, for the gods sake try again";
                     menu();
             }
         }
@@ -62,7 +63,12 @@ class loginZeus{
         fstream file;
         if (file)
         {
-            cout << "\n\n\n\t\t\t Welcome, please input new god information. \n" << endl;
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t            Creating a New God:             \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
 
             cout << "\t\t please enter the god Id [max 6 digets]: \n" << endl;
             cin >> godId;
@@ -94,7 +100,13 @@ class loginZeus{
         string name, roman;
         int id;
 
-        cout << "\n\t\t Edit a god";
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t          Edit and Existing God:            \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
+
         cout << "\n\t\t What is the god's ID?";
         cin >> matchId;
 
@@ -147,7 +159,14 @@ class loginZeus{
         int matchId;
         fstream file, newFile;
         int found = 0;
-        cout << "\t\t\t Delete a God \t\t\t\n";
+
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t              Deleting a God:               \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
+
         // opening the gods file, ios::in reads, ios:out operation
         file.open("gods.txt", ios::in);
         if(!file)
@@ -183,18 +202,61 @@ class loginZeus{
 
     void showGods()
     {
+        system("clear");
+        string choice;
+        
         fstream file;
         file.open("gods.txt", ios::in);
-        cout << "\n\n|________________________________\n";
-        cout << "God Id\t\tGreek Name\t\tRoman Name\n";
-        cout << "\n\n|________________________________\n";
-        file >> godId >> godName >> romanName;
-        while (!file.eof())
+
+            cout << "\t\t\t\t____________________________________________\n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t The Hand of Zeus: God Management Systsem   \n";
+            cout << "\t\t\t\t             Showing All Gods:              \n";
+            cout << "\t\t\t\t                                            \n";
+            cout << "\t\t\t\t____________________________________________\n";
+
+        cout << "\n\t\t Would You like to see a list of all gods? (Yes or No)";
+        cin >> choice;
+
+        if (choice == "yes" | choice =="Yes")
         {
-            cout << godId << "\t\t" << godName << "\t\t" << romanName << "\n";
-            file >> godId >> godName >> romanName;
+            system("clear");
+            cout << "\n\n\n God Id\t\tGreek Name\t\tRoman Name\t\tGod Of\n";
+            cout << "\n\n";
+            file >> godId >> godName >> romanName >> godOf;
+            while (!file.eof())
+            {
+                cout << godId << "\t\t" << godName << "\t\t" << romanName << "\t\t" << godOf << "\n";
+                file >> godId >> godName >> romanName;
+            }
+            file.close();
+
+            string menuinput;
+            cout << "\n\t\t Type -Menu- to return to main menu \n\n";
+            cin >> menuinput;
+            if (menuinput == "menu" | menuinput == "Menu" | menuinput == "-menu-" | menuinput == "-Menu-")
+            {
+                menu();
+            }
         }
-        file.close();
+        else 
+        {
+            string secondChoice;
+            cout << "\n\t\t\t\t Hit A to return to main menu, hit B exit program \n";
+            cin >> secondChoice;
+            if (secondChoice == "a" | secondChoice =="A")
+            {
+                menu();
+            }
+            else if(secondChoice == "b" | secondChoice == "B")
+            {
+                exit(0);
+            }
+            else{
+                cout << "\n\t\t\t\t Invalid input, redirecting to See All Gods";
+                showGods();
+            }
+        }
     }
 
     void login(){
@@ -206,8 +268,9 @@ class loginZeus{
         cout << "\t\t\t\t                                            \n";
         cout << "\t\t\t\t____________________________________________\n";
 
+        cout << "\n\n\n\t\t The Hand of Zeus is a data management system created completely with C++ and expands on the object oriented programming capabilities of the language. With the Hand of Zeus, the king of the gods can manage the pantheon and help keep the divine organized. Please enjoy the introduction to C++ and some examples of its uses.         \n\n\t\t\t\t\t\t- Josh\n";
 
-        cout << "\t please enter your almighty name username: \n";
+        cout << "\n\n\n\n\t\t\t To begin, please enter your almighty name (username): \n";
         // cin is input from user
         cin >> usernameMatch;
 
@@ -215,17 +278,17 @@ class loginZeus{
         username = getFile("users.txt");
 
         if(usernameMatch == username){
-            cout << "\t\t\t please enter the almighty password: \n";
+            cout << "\n\n\t\t\t\t please enter the almighty password: \n";
             cin >> passwordMatch;
 
             password = getFile("password.txt");
 
             if(passwordMatch == password) {
-                cout << "correct password";
+                cout << "\n\t\t\t\t Welcome Zeus, the power is in your hands.";
                 menu();
             }
             else {
-                cout << "wrong password";
+                cout << "/n/t/t/t/t Incorrect identification, don't get the gods upset. Try again.";
                 login();
             }
         }

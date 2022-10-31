@@ -12,7 +12,7 @@ Hand of Zues will be a C++ database management system. Zues, the admin, is able 
 
 C++ was used to program the entire management system. VS Code was used as my compiler for the project to run my program within my terminal using the `g++` command. Object oriented programming was utalized to create a fast and efficient system to manage data as the user sees fit. The following C++ libraries were used:
 1. iostream
-  i. `iostream` is used for standard input/output stream objects; such as `cin` and `cout`
+    1. `iostream` is used for standard input/output stream objects; such as `cin` and `cout`
 2. fstream
   i. `fstream` is an input/output stream class to operate on files. This was used to access my `.txt` files and be able to manipulate and read them to update and display data.
 3. vector

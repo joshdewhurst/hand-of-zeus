@@ -1,4 +1,4 @@
-# hand-of-zues
+# hand-of-zeus
 
 ![picture of Zues](https://i.pinimg.com/originals/a0/9b/f2/a09bf213e173fd54848d3e17ecd127a2.jpg)
 ---

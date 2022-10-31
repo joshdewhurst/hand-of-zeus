@@ -357,6 +357,7 @@ class loginZeus{
         int matchId;
         fstream file, newFile;
         int found = 0;
+        string matchName, matchRoman;
 
             cout << "\t\t\t\t____________________________________________\n";
             cout << "\t\t\t\t                                            \n";
@@ -380,51 +381,168 @@ class loginZeus{
 
             if (deletechoice == "y" | deletechoice =="Y")
             {
-                cout << "\n\n\t\t\t\t Please enter the god ID of the god you are sending to Tartarus:\n\n";
-                cin >> matchId;
-                newFile.open("newGods.txt", ios::app | ios::out);
-                file >> godId >> godName >> romanName;
-                while (!file.eof())
+
+                cout << "\n\t\t\t\t How best would you like to find a god to banish to Tartarus??\n";
+
+                cout << "\n\n\n\t\t 1. ID Number";
+                cout << "\n\n\n\t\t 2. Greek Name";
+                cout << "\n\n\n\t\t 3. Roman Name";
+                int selection;
+                cin >> selection;
+                
+                switch(selection)
                 {
-                    if (godId == matchId)
+                    case 1:
                     {
-                        cout << "\n\t\t\t\t God was banished";
-                        found++;
-                    } else 
-                    {
-                        newFile << " " << godId << " " << godName << " " << romanName << '\n';
+                            cout << "\n\n\t\t\t\t Please enter the god ID of the god you are sending to Tartarus:\n\n";
+                            cin >> matchId;
+                            newFile.open("newGods.txt", ios::app | ios::out);
+                            file >> godId >> godName >> romanName;
+                            while (!file.eof())
+                            {
+                                if (godId == matchId)
+                                {
+                                    cout << "\n\t\t\t\t God was banished";
+                                    found++;
+                                } else 
+                                {
+                                    newFile << " " << godId << " " << godName << " " << romanName << '\n';
+                                }
+                                file >> godId >> godName >>romanName;
+                            }
+                            newFile.close();
+                            file.close();
+                            remove("gods.txt");
+                            rename("newGods.txt", "gods.txt");
+                            string banishinput;
+                            cout << "\n\n\t\t\t\t Would you like to banish another god? (Y or N) \n\n";
+                            cin >> banishinput;
+                            if (banishinput == "Y" | banishinput == "y" | banishinput == "yes" | banishinput == "Yes")
+                            {
+                                deleteGod();
+                            }
+                            else if (banishinput == "N" | banishinput == "n" | banishinput == "No" | banishinput == "no")
+                            {
+                                string menuinput;
+                                cout << "\n\t\t Type -Menu- to return to main menu \n\n";
+                                cin >> menuinput;
+                                if (menuinput == "menu" | menuinput == "Menu" | menuinput == "-menu-" | menuinput == "-Menu-")
+                                {
+                                    menu();
+                                }
+                                else 
+                                {
+                                    cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                                    menu();
+                                }
+                            }
+                            else {
+                                cout << "/n/n/t/t/t/t Invalid Input, returning to Delete Gods";
+                            }
+                            break;
                     }
-                    file >> godId >> godName >>romanName;
-                }
-                newFile.close();
-                file.close();
-                remove("gods.txt");
-                rename("newGods.txt", "gods.txt");
-                string banishinput;
-                cout << "\n\n\t\t\t\t Would you like to banish another god? (Y or N) \n\n";
-                cin >> banishinput;
-                if (banishinput == "Y" | banishinput == "y" | banishinput == "yes" | banishinput == "Yes")
-                {
-                    deleteGod();
-                }
-                else if (banishinput == "N" | banishinput == "n" | banishinput == "No" | banishinput == "no")
-                {
-                    string menuinput;
-                    cout << "\n\t\t Type -Menu- to return to admin settings \n\n";
-                    cin >> menuinput;
-                    if (menuinput == "menu" | menuinput == "Menu" | menuinput == "-menu-" | menuinput == "-Menu-")
+
+                    case 2:
                     {
-                        admin();
+                            cout << "\n\n\t\t\t\t Please enter the Greek Name of the god you are sending to Tartarus:\n\n";
+                            cin >> matchName;
+                            newFile.open("newGods.txt", ios::app | ios::out);
+                            file >> godId >> godName >> romanName;
+                            while (!file.eof())
+                            {
+                                if (matchName == godName)
+                                {
+                                    cout << "\n\t\t\t\t God was banished";
+                                    found++;
+                                } else 
+                                {
+                                    newFile << " " << godId << " " << godName << " " << romanName << '\n';
+                                }
+                                file >> godId >> godName >>romanName;
+                            }
+                            newFile.close();
+                            file.close();
+                            remove("gods.txt");
+                            rename("newGods.txt", "gods.txt");
+                            string banishinput;
+                            cout << "\n\n\t\t\t\t Would you like to banish another god? (Y or N) \n\n";
+                            cin >> banishinput;
+                            if (banishinput == "Y" | banishinput == "y" | banishinput == "yes" | banishinput == "Yes")
+                            {
+                                deleteGod();
+                            }
+                            else if (banishinput == "N" | banishinput == "n" | banishinput == "No" | banishinput == "no")
+                            {
+                                string menuinput;
+                                cout << "\n\t\t Type -Menu- to return to main menu \n\n";
+                                cin >> menuinput;
+                                if (menuinput == "menu" | menuinput == "Menu" | menuinput == "-menu-" | menuinput == "-Menu-")
+                                {
+                                    menu();
+                                }
+                                else 
+                                {
+                                    cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                                    menu();
+                                }
+                            }
+                            else {
+                                cout << "/n/n/t/t/t/t Invalid Input, returning to Delete Gods";
+                            }
+                            break;
                     }
-                    else 
+
+                    case 3:
                     {
-                        cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
-                        menu();
+                            cout << "\n\n\t\t\t\t Please enter the Roman name of the god you are sending to Tartarus:\n\n";
+                            cin >> matchRoman;
+                            newFile.open("newGods.txt", ios::app | ios::out);
+                            file >> godId >> godName >> romanName;
+                            while (!file.eof())
+                            {
+                                if (romanName == matchRoman)
+                                {
+                                    cout << "\n\t\t\t\t God was banished";
+                                    found++;
+                                } else 
+                                {
+                                    newFile << " " << godId << " " << godName << " " << romanName << '\n';
+                                }
+                                file >> godId >> godName >>romanName;
+                            }
+                            newFile.close();
+                            file.close();
+                            remove("gods.txt");
+                            rename("newGods.txt", "gods.txt");
+                            string banishinput;
+                            cout << "\n\n\t\t\t\t Would you like to banish another god? (Y or N) \n\n";
+                            cin >> banishinput;
+                            if (banishinput == "Y" | banishinput == "y" | banishinput == "yes" | banishinput == "Yes")
+                            {
+                                deleteGod();
+                            }
+                            else if (banishinput == "N" | banishinput == "n" | banishinput == "No" | banishinput == "no")
+                            {
+                                string menuinput;
+                                cout << "\n\t\t Type -Menu- to return to main menu \n\n";
+                                cin >> menuinput;
+                                if (menuinput == "menu" | menuinput == "Menu" | menuinput == "-menu-" | menuinput == "-Menu-")
+                                {
+                                    menu();
+                                }
+                                else 
+                                {
+                                    cout << "\n\n\t\t\t\t Invalid Input, redirecting to Main Menu.\n";
+                                    menu();
+                                }
+                            }
+                            else {
+                                cout << "/n/n/t/t/t/t Invalid Input, returning to Delete Gods";
+                            }
+                            break;
                     }
                 }
-                else {
-                    cout << "/n/n/t/t/t/t Invalid Input, returning to Delete Gods";
-                }
+
             }
             else if (deletechoice == "n" | deletechoice == "N")
             {

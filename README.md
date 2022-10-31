@@ -2,20 +2,18 @@
 
 ![picture of Zues](https://i.pinimg.com/originals/a0/9b/f2/a09bf213e173fd54848d3e17ecd127a2.jpg)
 ---
-the technologies you plan on using
+Hand of Zues will be a C++ database management system. Zues, the admin, is able to perform different oporations to change the systems' data. C++ libraries will be used to track operations that create a new entry, delete an entry, or edit an entry within the database. The user will also be able to edit their username and password. 
+
+---
+## Technologies used
+
 * C++
-* Using VS Code as a compiler
-* Using WebAssembly to create HTML that shows my C++ management system
----
-### a description of the app
 
-Hand of Zues will be a C++ database management system. Zues, the admin, is able to perform different oporations to change the systems' data. C++ libraries will be used to track operations that create a new entry, delete an entry, or edit an entry within the database.
-
----
-## wireframes of the app
-
-I am not sure how the app will look as I am not sure how to integrate C++ to a web or mobile app front end framework yet. I have been doing studying and am not sure what the wireframe will yet look like. It looks like I can use WebAssembly to create an HTML file that shows my system on a web interface. But, C++ in a competitive langage that is primarily used for its performance on the backend, and running a front end application with C++ would be redundant since Javascript would need to be used and would be faster in that contect.
-![WireFrames](https://user-images.githubusercontent.com/108956371/197702368-f37c4b8a-8674-467f-9578-992de08c796d.png)
+C++ was used to program the entire management system. The object oriented programming was utalized to create a fast and efficient system to manage data as the user sees fit. The following C++ libraries were used:
+1. iostream
+2. fstream
+3. vector
+4. <string>
 
 
 ---

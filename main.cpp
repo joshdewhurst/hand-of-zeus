@@ -5,6 +5,7 @@
 #include <string>
 #include <stdio.h>
 #include <sstream>
+#define MAX_GOD_OF 250
 
 using namespace std;
 // using the standard library for naming
@@ -69,10 +70,13 @@ class loginZeus{
             cin >> godName;
             cout << "\t\t What is their roman name? \n";
             cin >> romanName;
+            cout << "\t\t What are they the god of? \n";
+            cin.ignore();
+            getline(cin, godOf);
 
             // inserting the godName into a file, but putting a new line for each new god that is created
             file.open("gods.txt", ios::out | ios::app);
-            file << godId << " " << godName << " " << romanName << "\n";
+            file << godId << " " << godName << " " << romanName << " " << godOf << "\n";
             file.close();
         }
         else{
@@ -195,7 +199,7 @@ class loginZeus{
 
     void login(){
         // cout is a response in console
-        cout << "please enter your almighty name \nUsername:";
+        cout << "\t please enter your almighty name username: \n";
         // cin is input from user
         cin >> usernameMatch;
 
@@ -203,7 +207,7 @@ class loginZeus{
         username = getFile("users.txt");
 
         if(usernameMatch == username){
-            cout << "please enter the almighty password:";
+            cout << "\t\t\t please enter the almighty password: \n";
             cin >> passwordMatch;
 
             password = getFile("password.txt");
@@ -245,6 +249,7 @@ class loginZeus{
         string username;
         string usernameMatch;
         string passwordMatch;
+        string godOf;
         bool authenticate;
         int godId;
         char godName[20];

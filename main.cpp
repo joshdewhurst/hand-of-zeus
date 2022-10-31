@@ -796,7 +796,7 @@ class loginZeus{
             cout << "\t\t\t\t                                            \n";
             cout << "\t\t\t\t____________________________________________\n";
 
-        cout << "\n\t\t Would You like to see a list of all gods? (Y or N)";
+        cout << "\n\t\t Would You like to see a list of all gods? (Y or N)\n";
         cin >> choice;
 
         if (choice == "y" | choice =="Y")
@@ -849,7 +849,7 @@ class loginZeus{
         cout << "\t\t\t\t                                            \n";
         cout << "\t\t\t\t____________________________________________\n";
 
-        cout << "\n\n\t\t\t\t You are currently logged in as the kind of the gods:" << "\n\t\t\t\t" << username;
+        cout << "\n\n\t\t\t\t You are currently logged in as the king of the gods:" << "\n\t\t\t\t" << username;
 
         cout << "\n\n\t\t\t\t What would you like to do?";
 

@@ -126,7 +126,7 @@ class loginZeus{
         fstream file, newFile;
         int matchId;
         int found = 0;
-        string name, roman;
+        string name, roman, matchName, matchRoman;
         int id;
 
             cout << "\t\t\t\t____________________________________________\n";
@@ -142,51 +142,203 @@ class loginZeus{
 
             if (editchoice == "y" | editchoice =="Y")
             {
-                cout << "\n\t\t\t\t What is the god's id\n\n";
-                cin >> matchId;
+        
 
-                file.open("gods.txt", ios::in);
-                if (!file)
+                cout << "\n\t\t\t\t How would you like to search for a god to edit?\n";
+
+                cout << "\n\n\n\t\t 1. ID Number";
+                cout << "\n\n\n\t\t 2. Greek Name";
+                cout << "\n\n\n\t\t 3. Roman Name";
+                int selection;
+                cin >> selection;
+                switch (selection)
                 {
-                    cout << "\n\t\t\t The gods are at it again...the file is lost";
-                    file.close();
-                }
-                else
-                {
-                    newFile.open("newGods.txt", ios::app | ios::out);
 
-                    file >> godId >> godName >> romanName;
-
-                    while (!file.eof())
+                        case 1:
+                            cout << "\n\t\t What is the god's ID? \n\n";
+                            cin >> matchId;
+                            
+                            file.open("gods.txt", ios::in);
+                            if (!file)
+                            {
+                                cout << "\n\t\t\t The gods are at it again...the file is lost";
+                                file.close();
+                            }
+                            else
                     {
-                        if (matchId == godId)
-                        {
-                            cout << "\n\t\t\t\tYou are currebtly editting " << godName << ", their ID number is: " << godId << ", and their Roman name is: " << romanName << "\n";
-                            cout << "\n\t\t\t\t What shall the new ID be?\n\n";
-                            cin >> id;
-                            cout << "\n\t\t\t\t What is the god's new Greek name?\n\n";
-                            cin >> name;
-                            cout << "\n\t\t\t\t What is the god's new Roman name?\n\n";
-                            cin >> roman;
-                            newFile << " " << id << " "<< name << " " << roman << "\n";
-                            cout << "\n\t\t God was edited!";
-                            found ++;
-                        }
-                        else 
-                        {
-                            cout << "God not found";
-                            newFile << " " << godId << " " << godName << " " << romanName << "\n";
-                        }
+                        newFile.open("newGods.txt", ios::app | ios::out);
+
                         file >> godId >> godName >> romanName;
+
+                        while (!file.eof())
+                        {
+                            if (matchId == godId)
+                            {
+                                cout << "\n\t\t\t\tYou are currebtly editting " << godName << ", their ID number is: " << godId << ", and their Roman name is: " << romanName << "\n";
+                                cout << "\n\t\t\t\t What shall the new ID be?\n\n";
+                                cin >> id;
+                                cout << "\n\t\t\t\t What is the god's new Greek name?\n\n";
+                                cin >> name;
+                                cout << "\n\t\t\t\t What is the god's new Roman name?\n\n";
+                                cin >> roman;
+                                newFile << " " << id << " "<< name << " " << roman << "\n";
+                                cout << "\n\t\t God was edited!";
+                                found ++;
+                            }
+                            else 
+                            {
+                                cout << "God not found";
+                                newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                            }
+                            file >> godId >> godName >> romanName;
+                        }
+                        file.close();
+                        newFile.close();
+                        remove("gods.txt");
+                        rename("newGods.txt","gods.txt");
+                        string editagain;
+                                cout << "\n\n\t\t\t\t Would you like to try to edit again? (Y or N)";
+                                cin >> editagain;
+                                if (editagain =="y" | editagain == "Y"){
+                                        editGod();
+                                    }
+                                else if (editagain == "n" | editagain == "N") {
+                                        menu();
+                                    }
+                                else 
+                                {
+                                    cout << "\n\n\t\t\t\t Invalid input, redirecting to main menu.";
+                                    menu();
+                                }
+
                     }
-                    file.close();
-                    newFile.close();
+                            break;
+                        
+                        case 2:
+                            cout << "\n\t\t What is the god's Greek name? \n\n";
+                            cin >> matchName;
+                            
+                            file.open("gods.txt", ios::in);
+                            if (!file)
+                            {
+                                cout << "\n\t\t\t The gods are at it again...the file is lost";
+                                file.close();
+                            }
+                            else
+                    {
+                        newFile.open("newGods.txt", ios::app | ios::out);
 
-                    remove("gods.txt");
-                    rename("newGods.txt","gods.txt");
+                        file >> godId >> godName >> romanName;
 
-                    menu();
+                        while (!file.eof())
+                        {
+                            if (matchName == godName)
+                            {
+                                cout << "\n\t\t\t\tYou are currebtly editting " << godName << ", their ID number is: " << godId << ", and their Roman name is: " << romanName << "\n";
+                                cout << "\n\t\t\t\t What shall the new ID be?\n\n";
+                                cin >> id;
+                                cout << "\n\t\t\t\t What is the god's new Greek name?\n\n";
+                                cin >> name;
+                                cout << "\n\t\t\t\t What is the god's new Roman name?\n\n";
+                                cin >> roman;
+                                newFile << " " << id << " "<< name << " " << roman << "\n";
+                                cout << "\n\t\t God was edited!";
+                                found ++;
+                            }
+                            else 
+                            {
+                                cout << "God not found";
+                                newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                            }
+                            file >> godId >> godName >> romanName;
+                        }
+                        file.close();
+                        newFile.close();
+                        remove("gods.txt");
+                        rename("newGods.txt","gods.txt");
+                        string editagain;
+                                cout << "\n\n\t\t\t\t Would you like to try to edit again? (Y or N)";
+                                cin >> editagain;
+                                if (editagain =="y" | editagain == "Y"){
+                                        editGod();
+                                    }
+                                else if (editagain == "n" | editagain == "N") {
+                                        menu();
+                                    }
+                                else 
+                                {
+                                    cout << "\n\n\t\t\t\t Invalid input, redirecting to main menu.";
+                                    menu();
+                                }
+
+                    }
+                            break;
+
+                        case 3:
+                        cout << "\n\t\t What is the god's Roman name? \n\n";
+                            cin >> matchRoman;
+                            
+                            file.open("gods.txt", ios::in);
+                            if (!file)
+                            {
+                                cout << "\n\t\t\t The gods are at it again...the file is lost";
+                                file.close();
+                            }
+                            else
+                    {
+                        newFile.open("newGods.txt", ios::app | ios::out);
+
+                        file >> godId >> godName >> romanName;
+
+                        while (!file.eof())
+                        {
+                            if (matchRoman == romanName)
+                            {
+                                cout << "\n\t\t\t\tYou are currebtly editting " << godName << ", their ID number is: " << godId << ", and their Roman name is: " << romanName << "\n";
+                                cout << "\n\t\t\t\t What shall the new ID be?\n\n";
+                                cin >> id;
+                                cout << "\n\t\t\t\t What is the god's new Greek name?\n\n";
+                                cin >> name;
+                                cout << "\n\t\t\t\t What is the god's new Roman name?\n\n";
+                                cin >> roman;
+                                newFile << " " << id << " "<< name << " " << roman << "\n";
+                                cout << "\n\t\t God was edited!";
+                                found ++;
+                            }
+                            else 
+                            {
+                                cout << "God not found";
+                                newFile << " " << godId << " " << godName << " " << romanName << "\n";
+                            }
+                            file >> godId >> godName >> romanName;
+                        }
+                        file.close();
+                        newFile.close();
+                        remove("gods.txt");
+                        rename("newGods.txt","gods.txt");
+                        string editagain;
+                                cout << "\n\n\t\t\t\t Would you like to try to edit again? (Y or N)";
+                                cin >> editagain;
+                                if (editagain =="y" | editagain == "Y"){
+                                        editGod();
+                                    }
+                                else if (editagain == "n" | editagain == "N") {
+                                        menu();
+                                    }
+                                else 
+                                {
+                                    cout << "\n\n\t\t\t\t Invalid input, redirecting to main menu.";
+                                    menu();
+                                }
+
+                    }
+                            break;
+
+                        default:
+                            cout << "\t\t\t\t ivalid choice, for the gods sake try again";
+                            editGod();
                 }
+                
             }
             else if (editchoice == "n" | editchoice == "N")
             {

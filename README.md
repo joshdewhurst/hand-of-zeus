@@ -71,7 +71,7 @@ ___
 - [X] create edit/delete/create for a datapoint "god" that the admin can edit
 - [X] create an auth for the admin
 
-# Unexected Achievements
+# Unexpected Achievements
 
 - [X] allowing the admin to edit and change their username and password
 - [X] Creating a registration element for the admin and allowing an admin to delete their account.

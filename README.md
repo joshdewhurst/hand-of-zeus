@@ -24,6 +24,14 @@ ___
 ![Home Screen, Hand of Zeus](https://user-images.githubusercontent.com/108956371/199040926-57f4911a-1768-4a5b-8d88-55c14122fea6.png)
 
 ___
+# Video Demo
+
+
+https://user-images.githubusercontent.com/108956371/199314489-c87d5521-4c4e-4463-859b-bb85424b8d06.mov
+
+
+
+___
 ## Technologies used
 
 * C++
